@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Singam Adikesava Reddy | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #0A1128;
+    --blue:   #1A56DB;
+    --cyan:   #00D4FF;
+    --yellow: #FFD600;
+    --white:  #F7F9FC;
+    --mid:    #8B95A8;
+    --card:   #111B34;
+    --border: rgba(0,212,255,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 6vw;
+    background: rgba(10,17,40,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; letter-spacing: 0.05em; color: var(--cyan); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--mid); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color .2s; }
+  .nav-links a:hover { color: var(--cyan); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 6vw 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 600px 500px at 80% 40%, rgba(26,86,219,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 300px at 10% 80%, rgba(0,212,255,0.1) 0%, transparent 60%);
+  }
+  /* geometric accent — echoes the Scaler cert colours */
+  .geo {
+    position: absolute; right: -60px; top: 50%; transform: translateY(-50%);
+    width: 420px; height: 420px; opacity: 0.07;
+    background:
+      conic-gradient(from 45deg, var(--blue), var(--cyan), var(--yellow), var(--blue));
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    animation: morph 10s ease-in-out infinite;
+  }
+  @keyframes morph {
+    0%,100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+    50%      { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+  }
+  .hero-content { position: relative; max-width: 700px; }
+  .eyebrow { font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); margin-bottom: 1rem; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+  }
+  h1 span { color: var(--cyan); }
+  .hero-sub { font-size: 1.1rem; color: var(--mid); max-width: 520px; margin-bottom: 2.4rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.4rem; }
+  .tag {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.05em;
+    padding: .3rem .85rem; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--cyan);
+    background: rgba(0,212,255,0.06);
+  }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .5rem;
+    padding: .75rem 1.6rem; border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif; font-size: .9rem; font-weight: 600;
+    text-decoration: none; transition: all .2s; cursor: pointer; border: none;
+  }
+  .btn-primary { background: var(--blue); color: #fff; }
+  .btn-primary:hover { background: var(--cyan); color: var(--navy); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--cyan); border: 1.5px solid var(--cyan); }
+  .btn-outline:hover { background: rgba(0,212,255,0.08); transform: translateY(-2px); }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 90px 6vw; }
+  .section-label {
+    font-size: .75rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--cyan); margin-bottom: .6rem;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    margin-bottom: 3rem;
+  }
+  .divider { width: 48px; height: 3px; background: var(--cyan); border-radius: 2px; margin: .8rem 0 3rem; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--card); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--mid); margin-bottom: 1rem; }
+  .about-text p strong { color: var(--white); }
+  .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 2rem; }
+  .stat { text-align: center; padding: 1.4rem 1rem; border-radius: 12px; border: 1px solid var(--border); }
+  .stat-num { font-family: 'Syne', sans-serif; font-size: 2rem; color: var(--cyan); }
+  .stat-lbl { font-size: .78rem; color: var(--mid); margin-top: .25rem; }
+
+  /* skills */
+  .skills-group { margin-bottom: 1.8rem; }
+  .skills-group h4 { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mid); margin-bottom: .8rem; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .pill {
+    font-size: .82rem; padding: .3rem .8rem; border-radius: 6px;
+    background: rgba(26,86,219,0.18); color: var(--white); border: 1px solid rgba(26,86,219,0.3);
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1.8rem; }
+  .project-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 2rem; position: relative; overflow: hidden;
+    transition: transform .25s, border-color .25s;
+  }
+  .project-card:hover { transform: translateY(-5px); border-color: rgba(0,212,255,0.4); }
+  .project-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+  }
+  .project-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .project-card h3 { font-size: 1.1rem; font-family: 'Syne', sans-serif; margin-bottom: .6rem; }
+  .project-card p { font-size: .88rem; color: var(--mid); margin-bottom: 1.2rem; }
+  .project-meta { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .meta-tag { font-size: .72rem; color: var(--mid); border: 1px solid var(--border); border-radius: 4px; padding: .15rem .5rem; }
+  .project-details { font-size: .82rem; color: var(--mid); }
+  .project-details span { color: var(--cyan); font-weight: 600; }
+
+  /* ── EXPERIENCE / EDUCATION ── */
+  #experience { background: var(--card); }
+  .timeline { max-width: 760px; }
+  .tl-item { display: flex; gap: 2rem; margin-bottom: 2.4rem; }
+  .tl-left { display: flex; flex-direction: column; align-items: center; }
+  .tl-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--cyan); flex-shrink: 0; margin-top: 4px;
+    box-shadow: 0 0 0 4px rgba(0,212,255,0.15);
+  }
+  .tl-line { flex: 1; width: 1px; background: var(--border); margin-top: 4px; }
+  .tl-right { padding-bottom: .5rem; }
+  .tl-right .org { font-size: .8rem; color: var(--cyan); letter-spacing: .05em; text-transform: uppercase; margin-bottom: .25rem; }
+  .tl-right h3 { font-size: 1.05rem; font-family: 'Syne', sans-serif; margin-bottom: .2rem; }
+  .tl-right .period { font-size: .8rem; color: var(--mid); margin-bottom: .5rem; }
+  .tl-right p { font-size: .88rem; color: var(--mid); }
+  .score { display: inline-block; margin-top: .4rem; background: rgba(0,212,255,0.1); color: var(--cyan); font-size: .78rem; font-weight: 600; padding: .15rem .6rem; border-radius: 4px; }
+
+  /* ── CERTS ── */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr)); gap: 1.4rem; }
+  .cert-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.4rem 1.6rem; display: flex; align-items: flex-start; gap: 1rem;
+    transition: border-color .2s;
+  }
+  .cert-card:hover { border-color: rgba(0,212,255,0.4); }
+  .cert-icon { font-size: 1.6rem; flex-shrink: 0; }
+  .cert-card h4 { font-size: .9rem; font-family: 'Syne', sans-serif; margin-bottom: .2rem; }
+  .cert-card p { font-size: .78rem; color: var(--mid); }
+
+  /* ── ACHIEVEMENTS ── */
+  #achievements { background: var(--card); }
+  .ach-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.2rem; }
+  .ach-card {
+    background: var(--navy); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.4rem; display: flex; align-items: flex-start; gap: .9rem;
+  }
+  .ach-icon { font-size: 1.5rem; flex-shrink: 0; }
+  .ach-card p { font-size: .88rem; color: var(--mid); }
+  .ach-card p strong { color: var(--white); display: block; margin-bottom: .15rem; }
+
+  /* ── CONTACT ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+  .contact-info p { color: var(--mid); margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: .9rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.4rem; border-radius: 10px;
+    border: 1px solid var(--border); text-decoration: none; color: var(--white);
+    transition: border-color .2s, background .2s;
+  }
+  .contact-link:hover { border-color: var(--cyan); background: rgba(0,212,255,0.05); }
+  .contact-link-icon { font-size: 1.2rem; flex-shrink: 0; }
+  .contact-link-label { font-size: .75rem; color: var(--mid); }
+  .contact-link-val { font-size: .9rem; font-weight: 500; }
+
+  /* featured cert */
+  .cert-featured {
+    background: linear-gradient(135deg, rgba(26,86,219,0.2), rgba(0,212,255,0.1));
+    border: 1px solid rgba(0,212,255,0.3); border-radius: 16px; padding: 2rem;
+  }
+  .cert-featured .eyebrow { margin-bottom: .4rem; }
+  .cert-featured h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; margin-bottom: .5rem; }
+  .cert-featured p { font-size: .88rem; color: var(--mid); margin-bottom: 1rem; }
+  .cert-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.3);
+    color: var(--cyan); font-size: .8rem; font-weight: 600; padding: .4rem .9rem; border-radius: 6px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center; padding: 2.5rem 6vw;
+    border-top: 1px solid var(--border);
+    font-size: .82rem; color: var(--mid);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stat-row { grid-template-columns: repeat(3,1fr); gap: .8rem; }
+    .nav-links { display: none; }
+    .geo { width: 260px; height: 260px; right: -80px; }
+  }
+
+  /* scroll-reveal (CSS-only fade-in) */
+  @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+  .reveal { opacity: 0; animation: fadeUp .6s ease forwards; }
+  .reveal.d1 { animation-delay: .1s; }
+  .reveal.d2 { animation-delay: .2s; }
+  .reveal.d3 { animation-delay: .3s; }
+  .reveal.d4 { animation-delay: .4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">S.ADIKESAVA REDDY</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Education</a></li>
+    <li><a href="#certs">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="geo"></div>
+  <div class="hero-content">
+    <p class="eyebrow reveal d1">Full Stack Developer · IT Undergraduate</p>
+    <h1 class="reveal d2">Singam<br/><span>Adikesava</span><br/>Reddy</h1>
+    <p class="hero-sub reveal d3">Building reliable web applications with Java, React &amp; Node.js — and exploring the infrastructure layer that runs them all.</p>
+    <div class="tags reveal d3">
+      <span class="tag">Java</span><span class="tag">React</span><span class="tag">Node.js</span>
+      <span class="tag">Docker &amp; Kubernetes</span><span class="tag">MySQL</span><span class="tag">REST APIs</span>
+    </div>
+    <div class="cta-row reveal d4">
+      <a href="#projects" class="btn btn-primary">View Projects ↓</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I am</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>B.Tech Information Technology student</strong> at Veltech University, Chennai (Batch 2023–2027), currently holding a <strong>9.0 CGPA</strong>. I enjoy building end-to-end web applications that solve real problems — from designing databases to wiring up REST APIs and shipping clean front-ends.</p>
+      <p>I recently attended Scaler's <strong>Docker &amp; Kubernetes Fundamentals for AI Platform Engineers (2026)</strong> Masterclass, expanding my skills into the cloud-native space.</p>
+      <p>Outside code I'm a competitive Kabaddi player — <strong>Gold Medalist at District Level (Tamil Nadu CM Trophy 2024)</strong> — which has sharpened my instincts for teamwork and pressure.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">9.0</div><div class="stat-lbl">CGPA</div></div>
+        <div class="stat"><div class="stat-num">3+</div><div class="stat-lbl">Projects</div></div>
+        <div class="stat"><div class="stat-num">4+</div><div class="stat-lbl">Certifications</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="skills-group">
+        <h4>Languages</h4>
+        <div class="skill-pills">
+          <span class="pill">Java</span>
+          <span class="pill">DSA</span><span class="pill">JavaScript</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h4>Backend &amp; DB</h4>
+        <div class="skill-pills">
+          <span class="pill">Node.js</span><span class="pill">Express.js</span>
+          <span class="pill">Spring Boot</span><span class="pill">REST APIs</span>
+          <span class="pill">MySQL</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h4>Frontend</h4>
+        <div class="skill-pills">
+          <span class="pill">React</span><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">Bootstrap</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h4>Cloud &amp; Tools</h4>
+        <div class="skill-pills">
+          <span class="pill">Microsoft Azure</span><span class="pill">Docker</span>
+          <span class="pill">Kubernetes</span><span class="pill">Pandas</span>
+          <span class="pill">NewsAPI</span>
+        </div>
+      </div>
+      <div class="skills-group">
+        <h4>Soft Skills</h4>
+        <div class="skill-pills">
+          <span class="pill">Adaptability</span><span class="pill">Team Work</span>
+          <span class="pill">Time Management</span><span class="pill">Discipline</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">What I've built</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="divider"></div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-icon">📰</div>
+      <h3>Authentic News Feed System</h3>
+      <p>A trustworthy news aggregator that filters and verifies articles in real time using Python and NewsAPI before serving them through a Node.js backend.</p>
+      <div class="project-meta">
+        <span class="meta-tag">Python</span>
+        <span class="meta-tag">Node.js</span>
+        <span class="meta-tag">Express.js</span>
+        <span class="meta-tag">NewsAPI</span>
+        <span class="meta-tag">Pandas</span>
+      </div>
+      <div class="project-details">
+        <span>Duration:</span> 3 Months &nbsp;·&nbsp; <span>Role:</span> Full Stack Developer &nbsp;·&nbsp; <span>Team:</span> 2
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">🎓</div>
+      <h3>Smart Campus Event Management</h3>
+      <p>A solo-built web platform for scheduling, registering, and tracking campus events in real time — backed by Spring Boot and a Node.js API layer.</p>
+      <div class="project-meta">
+        <span class="meta-tag">Java</span>
+        <span class="meta-tag">Spring Boot</span>
+        <span class="meta-tag">Node.js</span>
+        <span class="meta-tag">HTML/CSS/JS</span>
+      </div>
+      <div class="project-details">
+        <span>Duration:</span> 1 Month &nbsp;·&nbsp; <span>Role:</span> Full Stack Developer &nbsp;·&nbsp; <span>Team:</span> Solo
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-icon">☁️</div>
+      <h3>Microsoft Azure Cloud Internship</h3>
+      <p>Completed a 4-week internship exploring Azure's core services — deploying and managing cloud resources on the Azure platform with hands-on labs.</p>
+      <div class="project-meta">
+        <span class="meta-tag">Microsoft Azure</span>
+        <span class="meta-tag">Cloud Computing</span>
+        <span class="meta-tag">IaaS / PaaS</span>
+      </div>
+      <div class="project-details">
+        <span>Duration:</span> 4 Weeks &nbsp;·&nbsp; <span>Type:</span> Internship
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION & EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">My journey</p>
+  <h2 class="section-title">Education</h2>
+  <div class="divider"></div>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-right">
+        <div class="org">Veltech University · Chennai</div>
+        <h3>B.Tech in Information Technology</h3>
+        <p class="period">2023 – 2027</p>
+        <p>Core curriculum spanning Java, Python, DSA, MySQL, Web Technologies, and Full Stack Development.</p>
+        <span class="score">CGPA: 9.0</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+      <div class="tl-right">
+        <div class="org">Narayana Junior College · Kadapa, AP</div>
+        <h3>Intermediate (Class XII)</h3>
+        <p class="period">2021 – 2023</p>
+        <span class="score">95%</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-left"><div class="tl-dot"></div></div>
+      <div class="tl-right">
+        <div class="org">Sloka International School · Vempalli, AP</div>
+        <h3>Matriculation (Class X)</h3>
+        <p class="period">2019 – 2020</p>
+        <span class="score">99%</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Certifications</h2>
+  <div class="divider"></div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">📊</div>
+      <div>
+        <h4>Data Analysis with Python</h4>
+        <p>IBM – Cognitive Class</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🔐</div>
+      <div>
+        <h4>CompTIA SecurityX: Applied Cryptography</h4>
+        <p>Infosys Springboard</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🤖</div>
+      <div>
+        <h4>Machine Learning Fundamentals</h4>
+        <p>Infosys Springboard</p>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🐳</div>
+      <div>
+        <h4>Docker &amp; Kubernetes for AI Platform Engineers</h4>
+        <p>Scaler Masterclass · June 2026</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <p class="section-label">Recognition</p>
+  <h2 class="section-title">Achievements</h2>
+  <div class="divider"></div>
+  <div class="ach-grid">
+    <div class="ach-card">
+      <div class="ach-icon">🥇</div>
+      <p><strong>Gold Medal — Kabaddi</strong>District Level, Tamil Nadu CM Trophy 2024</p>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">💡</div>
+      <p><strong>Srijan 2026</strong>Online innovation &amp; solution-building challenge by Atos Global IT Solutions</p>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">📸</div>
+      <p><strong>Prompt Media</strong>Competition conducted by SRM University, Chennai</p>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">⚙️</div>
+      <p><strong>EDZIAL 2.0</strong>Technical &amp; innovation event, February 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's connect</p>
+  <h2 class="section-title">Contact</h2>
+  <div class="divider"></div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p>I'm open to internship opportunities, collaborative projects, and conversations about full-stack development or cloud-native engineering.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:singamadi2006@gmail.com">
+          <span class="contact-link-icon">✉️</span>
+          <div>
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-val">singamadi2006@gmail.com</div>
+          </div>
+        </a>
+        <a class="contact-link" href="mailto:vtu25083@veltech.edu.in">
+          <span class="contact-link-icon">🎓</span>
+          <div>
+            <div class="contact-link-label">University Email</div>
+            <div class="contact-link-val">vtu25083@veltech.edu.in</div>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/adikesavareddy-singam-7646ba361/" target="_blank">
+          <span class="contact-link-icon">🔗</span>
+          <div>
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-val">adikesavareddy-singam</div>
+          </div>
+        </a>
+        <a class="contact-link" href="tel:7981195980">
+          <span class="contact-link-icon">📱</span>
+          <div>
+            <div class="contact-link-label">Mobile</div>
+            <div class="contact-link-val">+91 79811 95980</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div class="cert-featured">
+        <p class="eyebrow">Latest Achievement</p>
+        <h3>Docker &amp; Kubernetes for AI Platform Engineers</h3>
+        <p>Attended Scaler's live Masterclass on 23rd June 2026 — upskilling in containerisation and orchestration for modern AI infrastructure.</p>
+        <span class="cert-badge">🏅 Certificate of Participation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Crafted by Singam Adikesava Reddy · Veltech University · 2026</p>
+</footer>
+
+</body>
+</html>
